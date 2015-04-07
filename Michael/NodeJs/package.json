@@ -1,0 +1,11 @@
+{
+  "name": "examples",
+  "version": "0.0.0",
+  "description": "A Set of examples to show what node.js can do for you!",
+  "repository": "",
+  "author": "Michael Blackley",
+  "dependencies": {
+    "express": "~3.2.4",
+    "ejs": "~1.0.0"
+  }
+}
