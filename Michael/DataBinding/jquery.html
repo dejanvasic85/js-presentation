@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+</head>
+
+<body>
+  <h1>Knockout</h1>
+
+  <h3>HTML controls</h3>
+  <table>
+      <tr>
+          <td class="label">Text value (updates on change):</td>
+          <td><input id="stringValueChangeField" /></td>
+      </tr>
+      <tr>
+          <td class="label">Text value (updates on keystroke):</td>
+          <td><input id="stringValueKeyStrokeField" /></td>
+      </tr>
+      <tr>
+          <td class="label">Text value (multi-line):</td>
+          <td><textarea id="stringValueMultiLineField"> </textarea></td>
+      </tr>
+      <tr>
+          <td class="label">Password:</td>
+          <td><input type="password" id="passwordField" /></td>
+      </tr>
+      <tr>
+          <td class="label">Checkbox:</td>
+          <td><input type="checkbox" id="checkboxField" /></td>
+      </tr>
+      <tr>
+          <td class="label">Drop-down list:</td>
+          <td><select id="dropdownField"></select></td>
+      </tr>
+      <tr>
+          <td class="label">Multi-select drop-down list:</td>
+          <td><select multiple="multiple" id="multiSelectDropDownField"></select></td>
+      </tr>
+      <tr>
+          <td class="label">Radio buttons:</td>
+          <td>
+              <label><input type="radio" value="Alpha" id="radioButtonAlphaField" name="radioButtonField" />Alpha</label>
+              <label><input type="radio" value="Beta" id="radioButtonBetaField" name="radioButtonField" />Beta</label>
+              <label><input type="radio" value="Gamma" id="radioButtonGammaField" name="radioButtonField" />Gamma</label>
+          </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><input type="submit" onclick="showObj()"></td>
+      </tr>
+  </table>
+
+  <div class="readout">
+    <h3>What's in the model?</h3>
+    <table>
+        <tr>
+            <td class="label">Text value:</td>
+            <td id="stringValue"></td>
+        </tr>
+        <tr>
+            <td class="label">Password:</td>
+            <td id="passwordValue"></td>
+        </tr>
+        <tr>
+            <td class="label">Bool value:</td>
+            <td id="booleanValue"></td>
+        </tr>
+        <tr>
+            <td class="label">Selected option:</td>
+            <td id="selectedOptionValue"></td>
+        </tr>
+        <tr>
+            <td class="label">Multi-selected options:</td>
+            <td id="multipleSelectedOptionValues"></td>
+        </tr>
+        <tr>
+            <td class="label">Radio button selection:</td>
+            <td id="radioSelectedOptionValue"></td>
+        </tr>
+    </table>
+  </div>
+  
+
+  <script type="text/javascript">
+
+    var viewModel = {
+        stringValue : 'Hello',
+        passwordValue : 'mypass',
+        booleanValue : true,
+        optionValues : ['Alpha', 'Beta', 'Gamma'],
+        selectedOptionValue : 'Gamma',
+        multipleSelectedOptionValues : 'Alpha',
+        radioSelectedOptionValue : 'Beta'
+    };
+
+    function showObj() {
+      alert(JSON.stringify(viewModel));
+    }
+    
+    $(function() {
+      setAllStringFields();
+
+      $('#passwordValue').text(viewModel.passwordValue);
+      $('#passwordField').val(viewModel.passwordValue);
+
+      $('#booleanValue').text(viewModel.booleanValue);
+      $('#checkboxField').prop('checked', viewModel.booleanValue);
+
+      var dropDownValues = buildDropDownValues();
+      $('#dropdownField').append(dropDownValues);
+      $('#dropdownField').val(viewModel.selectedOptionValue);
+      $('#selectedOptionValue').text(viewModel.selectedOptionValue);
+
+      $('#multipleSelectedOptionValues').text(viewModel.multipleSelectedOptionValues);
+      $('#multiSelectDropDownField').append(dropDownValues);
+      $('#multiSelectDropDownField').val(viewModel.multipleSelectedOptionValues);
+
+      $('#radioSelectedOptionValue').text(viewModel.radioSelectedOptionValue);
+      $("input[name=radioButtonField][value=" + viewModel.radioSelectedOptionValue + "]").prop('checked', true);
+
+      $('#stringValueChangeField').on('change', function() {
+        viewModel.stringValue = $(this).val();
+        setAllStringFields();
+      });
+
+      $('#stringValueKeyStrokeField').on('keyup', function() {
+        viewModel.stringValue = $(this).val();
+        setAllStringFields();
+      });
+
+      $('#stringValueMultiLineField').on('change', function() {
+        viewModel.stringValue = $(this).val();
+        setAllStringFields();
+      });
+
+      $('#passwordField').on('change', function() {
+        viewModel.passwordValue = $(this).val();
+        $('#passwordValue').text(viewModel.passwordValue);
+      });
+
+      $('#checkboxField').on('change', function() {
+        viewModel.booleanValue = $(this).prop('checked');
+        $('#booleanValue').text(viewModel.booleanValue);
+      });
+
+      $('#dropdownField').on('change', function() {
+        viewModel.selectedOptionValue = $(this).val();
+        $('#selectedOptionValue').text(viewModel.selectedOptionValue);
+      });
+
+      $('#multiSelectDropDownField').on('change', function() {
+        viewModel.multipleSelectedOptionValues = $(this).val();
+        $('#multipleSelectedOptionValues').text(viewModel.multipleSelectedOptionValues);
+      });
+
+      $("input:radio[name=radioButtonField]").click(function() {
+          viewModel.radioSelectedOptionValue = $(this).val();
+          $('#radioSelectedOptionValue').text(viewModel.radioSelectedOptionValue);
+      });
+      
+      function setAllStringFields() {
+        $('#stringValue').text(viewModel.stringValue);
+        $('#stringValueChangeField').val(viewModel.stringValue);
+        $('#stringValueMultiLineField').val(viewModel.stringValue);
+        $('#stringValueKeyStrokeField').val(viewModel.stringValue);
+      }
+
+      function buildDropDownValues() {
+        var option = '';
+        for (i=0; i<viewModel.optionValues.length; i++){
+          option += '<option value="'+ viewModel.optionValues[i] + '">' + viewModel.optionValues[i] + '</option>';
+        }
+        return option;
+      }
+
+    });
+
+
+
+  </script>
+
+</body>
+
+</html>
