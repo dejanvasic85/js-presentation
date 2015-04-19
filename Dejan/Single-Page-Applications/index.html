@@ -33,7 +33,7 @@
 							<span ng-show="!cart.hasItems()">Your cart is empty</span>
 							<span ng-show="cart.hasItems()">
 								[<span ng-bind="cart.itemsSelected.length"></span> items]
-								<span ng-bind="cart.totalValue() | currency"></span>
+							<span ng-bind="cart.totalValue() | currency"></span>
 							</span>
 						</a>
 					</div>
@@ -52,22 +52,59 @@
 			</div>
 		</div>
 
-		<div class="container" ng-controller="CatalogCtrl as catalog">
+
+		<div class="container">
+
+
 			<!-- Example row of columns -->
 			<div class="row">
-				<div class="col-sm-4 col-md-3 col-xs-6" ng-repeat="prd in catalog.products">
-					<h2>
+				<div class="col-sm-6">
+
+					<div class="row" ng-controller="CatalogCtrl as catalog">
+						<div class="col-md-4 col-sm-6" ng-repeat="prd in catalog.products">
+							<h2>
 					<span ng-bind='prd.name'></span>
 					<span ng-bind='prd.price | currency'></span>
 				</h2>
-					<p ng-bind='prd.description'></p>
-					<p>
-						<button class="btn btn-default" role="button" ng-click='cart.addItem(prd)'>
-							Add To Cart <i class="glyphicon glyphicon-ok-circle"></i>
-						</button>
-					</p>
+							<p ng-bind='prd.description'></p>
+							<p>
+								<button class="btn btn-default" role="button" ng-click='cart.addItem(prd, 1)'>
+									Add To Cart <i class="glyphicon glyphicon-ok-circle"></i>
+								</button>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<h3>Shopping Cart</h3>
+
+					<table class="table">
+						<thead>
+							<tr>
+								<td>Item</td>
+								<td>Price</td>
+								<td>Qty</td>
+								<td>Total</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="prd in cart.itemsSelected">
+								<td><span ng-bind="prd.name"></span>
+								</td>
+								<td><span ng-bind="prd.price | currency"></span>
+								</td>
+								<td>
+									<input type="text" clas="form-control" ng-model="prd.qty" />
+								</td>
+								<td><span ng-bind="prd.getTotal() | currency"></span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
 			</div>
+
+
 
 			<hr>
 

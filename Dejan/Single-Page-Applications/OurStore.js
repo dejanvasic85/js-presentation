@@ -33,8 +33,13 @@ OurStoreApp.controller('ShoppingCartCtrl', function(){
 		return total;
 	};
 	
-	this.addItem = function(item){
-		vm.itemsSelected.push(item);
+	this.addItem = function(item, qty){
+		var selectedProduct = angular.copy(item);
+		selectedProduct.qty = qty;
+		selectedProduct.getTotal = function(){
+			return this.qty * this.price;
+		}
+		vm.itemsSelected.push(selectedProduct);
 	};
 });
 
@@ -48,25 +53,25 @@ function CatalogCtrl(productService){
 OurStoreApp.service('productService', ProductService);
 function ProductService(){
 	var bikes = [{
-		name : 'GIANT',
+		name : 'Giant',
 		description : 'a really cool bike',
-		price : 999,
+		price : 200,
 		qty : 10
 	},{
-		name : 'Avanti',
+		name : 'Cervelo',
 		description : 'a really cool car',
-		price : 9999,
-		qty : 100
+		price : 300,
+		qty : 5
+	},{
+		name : 'Trek',
+		description : 'a really cool car',
+		price : 400,
+		qty : 2
 	},{
 		name : 'Avanti',
 		description : 'a really cool car',
-		price : 9999,
-		qty : 100
-	},{
-		name : 'Avanti',
-		description : 'a really cool car',
-		price : 9999,
-		qty : 100
+		price : 500,
+		qty : 1
 	}];
 	
 	return {
