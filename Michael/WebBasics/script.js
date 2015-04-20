@@ -14,7 +14,6 @@ function showHide() {
 
 /* EXAMPLE 2 */
 function makeAllListItemsRed() {
-  var list = document.getElementById('theList');
   var listItems = document.getElementsByTagName('li');
 
   for (var i = 0; i < listItems.length; ++i) {
@@ -23,7 +22,6 @@ function makeAllListItemsRed() {
 }
 
 function makeAllListItemsBold() {
-  var list = document.getElementById('theList');
   var listItems = document.getElementsByTagName('li');
 
   for (var i = 0; i < listItems.length; ++i) {
@@ -32,7 +30,6 @@ function makeAllListItemsBold() {
 }
 
 function addClassToAllListItems() {
-  var list = document.getElementById('theList');
   var listItems = document.getElementsByTagName('li');
 
   for (var i = 0; i < listItems.length; ++i) {
@@ -43,17 +40,24 @@ function addClassToAllListItems() {
 
 /* EXAMPLE 3 */
 
+function changeParagraphText() {
+  var para = document.getElementById('para');
+  para.innerHTML = 'I got changed from JavaScript!';
+}
+
 function addRowToTable() {
 
   var table = document.getElementById('myTable');
 
+  //neg 1 = add after last current row
   var row = table.insertRow(-1);
+  //var row = table.insertRow(-1);
 
   var cell1 = row.insertCell(0);
   var cell2 = row.insertCell(1);
 
-  cell1.innerHTML = 'New data';
-  cell2.innerHTML = 'New data';
+  cell1.innerHTML = 'New data 1';
+  cell2.innerHTML = 'New data 2';
 }
 
 function clickChangeImage(theImage) {

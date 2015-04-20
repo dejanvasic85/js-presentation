@@ -10,6 +10,8 @@ $(function() {
   })
 
   $('#makeAllRedLink').on('click', function() {
+    //$('#theList li').css('color', 'red');
+
     $('#theList li').each(function(i) {
       $(this).css('color', 'red');
     });
@@ -28,15 +30,21 @@ $(function() {
   });
 
   /*EXAMPLE 2*/
+  $('#changeParagraphBtn').on('click', function() {
+    var para = $('#para');
+    para.html('I got changed from JavaScript!');
+    //para.html('I got changed from <strong>JavaScript!</strong>');
+  });
+
 
   $('#addRowLink').on('click', function() {
-    $('#myTable').append('<tr><td>New data</td><td>New data</td></tr>');
+    $('#myTable').append('<tr><td>New data 1</td><td>New data 2</td></tr>');
     
     /*
     $("#myTable")
       .append($('<tr>')
-          .append($('<td>').text('New data'))
-          .append($('<td>').text('New data'))
+          .append($('<td>').text('New data 1'))
+          .append($('<td>').text('New data 2'))
       )
     */
     
