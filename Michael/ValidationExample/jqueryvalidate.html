@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <link href="css/bootstrap.css" rel="stylesheet" />
+  
+  <title>JQuery Validate</title>
+
+  <style>
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+
+  <body>
+    <div>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">Home</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <div class="navbar-right" style="margin-top:10px;">
+          </div>
+        </div>
+        <!--/.navbar-collapse -->
+      </div>
+    </nav>
+
+    <div class="jumbotron">
+      <div class="container">
+        <h1>JQuery Validate</h1>
+        <p>Using the JQuery Validate plugin to make validation easy!</p>
+      </div>
+    </div>
+
+    <div class="container">
+      
+      <div class="row">
+        <div class="alert alert-danger hidden" role="alert"></div>
+        <div class="alert alert-success hidden" role="alert">Everything is filled out correctly</div>
+        <form id="commentForm">
+          <div class="form-group">
+            <label for="firstName">Name (required, at least 2 characters)</label>
+            <input type="text" class="form-control" name="name" placeholder="Enter first name" minlength="2" >
+          </div>
+          <div class="form-group">
+            <label for="lastName">E-Mail (required)</label>
+            <input type="email" class="form-control" name="email" required placeholder="Enter email" />
+          </div>
+
+          <div class="form-group">
+            <label for="lastName">URL (optional)</label>
+            <input type="url" class="form-control" name="url" placeholder="Enter your URL" />
+          </div>
+
+          <div class="form-group">
+            <label for="lastName">Your comment</label>
+            <textarea class="form-control" id="ccomment" name="comment"> </textarea>
+          </div>
+
+          <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+      </div>
+
+      
+    </div>
+
+      <hr>
+      <footer>
+        <p>&copy; Company 2014</p>
+      </footer>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+  <script src=" https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
+ 
+  <script type="text/javascript">
+    //$("#commentForm").validate();
+
+    $("#commentForm").validate({
+      messages: {
+        comment: "I know it's strange but please enter a comment between 2 and 10 characters"
+      },
+      rules:  {
+        comment: {
+          required: true,
+          minlength: 2,
+          maxlength: 10
+        }
+      }
+    });
+
+
+  </script>
+
+</body>
+
+</html>
