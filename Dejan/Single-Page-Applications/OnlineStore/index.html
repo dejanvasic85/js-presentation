@@ -9,22 +9,21 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 
-	<link href="css/bootstrap.css" rel="stylesheet" />
+	<title>Jumbotron Template for Bootstrap</title>
+
+	<!-- Bootstrap core CSS -->
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+
 </head>
 
-<body ng-app="OurStoreApp" ng-controller="HomeCtrl as home">
+<body ng-app="ourStoreModule" ng-controller="coreCtrl as core">
 
-	<div ng-controller="ShoppingCartCtrl as cart">
-		<nav class="navbar navbar-inverse navbar-fixed-top" ng-controller="NavigationCtrl as nav">
+	<div ng-controller='cartCtrl as cart'>
+
+		<nav class="navbar navbar-inverse navbar-fixed-top" ng-controller="navigationCtrl as nav">
 			<div class="container">
 				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="#" ng-bind='home.storeName'></a>
+					<a class="navbar-brand" href="#">{{core.storeName}}</a>
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">
 					<div class="navbar-right" style="margin-top:10px;">
@@ -32,7 +31,7 @@
 							<i class="glyphicon glyphicon-shopping-cart"></i>
 							<span ng-show="!cart.hasItems()">Your cart is empty</span>
 							<span ng-show="cart.hasItems()">
-								[<span ng-bind="cart.itemsSelected.length"></span> items]
+								[<span ng-bind="cart.selectedBikes.length"></span> items]
 							<span ng-bind="cart.totalValue() | currency"></span>
 							</span>
 						</a>
@@ -45,66 +44,66 @@
 		<!-- Main jumbotron for a primary marketing message or call to action -->
 		<div class="jumbotron">
 			<div class="container">
-				<h1>Welcome, to the store!</h1>
+				<h1>Hello, world!</h1>
 				<p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
 				<p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a>
 				</p>
 			</div>
 		</div>
 
-
 		<div class="container">
 
-
-			<!-- Example row of columns -->
 			<div class="row">
-				<div class="col-sm-6">
+				<div class="col-md-6">
 
-					<div class="row" ng-controller="CatalogCtrl as catalog">
-						<div class="col-md-4 col-sm-6" ng-repeat="prd in catalog.products">
-							<h2>
-					<span ng-bind='prd.name'></span>
-					<span ng-bind='prd.price | currency'></span>
-				</h2>
-							<p ng-bind='prd.description'></p>
+					<div class="row" ng-controller="catalogCtrl as catalog">
+						<div class="col-md-6" ng-repeat="b in catalog.bikes">
+							<h2>{{b.name}}</h2>
+							<p>{{b.description}}</p>
+							<p class="well">
+								{{b.price | currency}}
+							</p>
 							<p>
-								<button class="btn btn-default" role="button" ng-click='cart.addItem(prd, 1)'>
-									Add To Cart <i class="glyphicon glyphicon-ok-circle"></i>
+								<button class="btn btn-default" role="button" ng-click="cart.addProduct(b, 1)">
+									Add To Cart &nbsp;<i class="glyphicon glyphicon-ok-circle"></i>
 								</button>
 							</p>
 						</div>
 					</div>
-				</div>
-				<div class="col-sm-6">
-					<h3>Shopping Cart</h3>
 
-					<table class="table">
-						<thead>
-							<tr>
-								<td>Item</td>
-								<td>Price</td>
-								<td>Qty</td>
-								<td>Total</td>
-							</tr>
-						</thead>
-						<tbody>
-							<tr ng-repeat="prd in cart.itemsSelected">
-								<td><span ng-bind="prd.name"></span>
-								</td>
-								<td><span ng-bind="prd.price | currency"></span>
-								</td>
-								<td>
-									<input type="text" class="form-control" ng-model="prd.qty" />
-								</td>
-								<td><span ng-bind="prd.getTotal() | currency"></span>
-								</td>
-							</tr>
-						</tbody>
-					</table>
+				</div>
+				<div class="col-md-6">
+					<h2>Shopping Cart &nbsp;
+						<button ng-show="cart.hasItems()" class="btn btn-default" ng-click="cart.clear()"><i class="glyphicon glyphicon-trash"></i></button>
+					</h2>
+					<div ng-show="!cart.hasItems()" class="alert alert-info">
+						I'm Empty :(
+					</div>
+					<div ng-show="cart.hasItems()">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>Bike</th>
+									<th>Price</th>
+									<th>Qty</th>
+									<th>Total</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="bk in cart.selectedBikes">
+									<td>{{bk.name}}</td>
+									<td>{{bk.price | currency}}</td>
+									<td>{{bk.qty}}</td>
+									<td>
+										<input class="form-control" type="number" ng-model="bk.qty">
+									</td>
+									<td>{{bk.total() | currency}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 				</div>
 			</div>
-
-
 
 			<hr>
 
@@ -112,11 +111,13 @@
 				<p>&copy; Company 2014</p>
 			</footer>
 		</div>
+		<!-- /container -->
+
 	</div>
-	<!-- /container -->
 
 	<script src="angular.js"></script>
-	<script src="OurStore.js"></script>
+	<script src="ourStoreApp.js"></script>
+
 
 </body>
 
