@@ -42,7 +42,7 @@ function addClassToAllListItems() {
 
 function changeParagraphText() {
   var para = document.getElementById('para');
-  para.innerHTML = 'I got changed from JavaScript!';
+  para.innerHTML = 'I got changed from <strong>JavaScript!</strong>';
 }
 
 function addRowToTable() {

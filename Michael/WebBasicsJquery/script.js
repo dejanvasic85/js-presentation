@@ -9,6 +9,7 @@ $(function() {
     //$('#showHideContentParagraph').toggle('slow');
   })
 
+  //click event not available to elements added later/dynamically	
   $('#makeAllRedLink').on('click', function() {
     //$('#theList li').css('color', 'red');
 
