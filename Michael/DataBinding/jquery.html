@@ -1,89 +1,131 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <link href="css/bootstrap.css" rel="stylesheet" />
+  
+  <title>JQuery for Data Binding</title>
 </head>
 
-<body>
-  <h1>Knockout</h1>
+  <body>
+    <div>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">Home</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <div class="navbar-right" style="margin-top:10px;">
+          </div>
+        </div>
+        <!--/.navbar-collapse -->
+      </div>
+    </nav>
 
-  <h3>HTML controls</h3>
-  <table>
-      <tr>
-          <td class="label">Text value (updates on change):</td>
-          <td><input id="stringValueChangeField" /></td>
-      </tr>
-      <tr>
-          <td class="label">Text value (updates on keystroke):</td>
-          <td><input id="stringValueKeyStrokeField" /></td>
-      </tr>
-      <tr>
-          <td class="label">Text value (multi-line):</td>
-          <td><textarea id="stringValueMultiLineField"> </textarea></td>
-      </tr>
-      <tr>
-          <td class="label">Password:</td>
-          <td><input type="password" id="passwordField" /></td>
-      </tr>
-      <tr>
-          <td class="label">Checkbox:</td>
-          <td><input type="checkbox" id="checkboxField" /></td>
-      </tr>
-      <tr>
-          <td class="label">Drop-down list:</td>
-          <td><select id="dropdownField"></select></td>
-      </tr>
-      <tr>
-          <td class="label">Multi-select drop-down list:</td>
-          <td><select multiple="multiple" id="multiSelectDropDownField"></select></td>
-      </tr>
-      <tr>
-          <td class="label">Radio buttons:</td>
-          <td>
+    <div class="jumbotron">
+      <div class="container">
+        <h1>JQuery for Data Binding</h1>
+        <p>Two way data binding allows us to start with a model, most likely requested from the server and bind it to a page. The page can then make changes to the model and send it back to the server.</p>
+      </div>
+    </div>
+
+    <div class="container">
+      
+      <div class="row">
+        <form>
+          <div class="form-group">
+            <label for="stringValueChangeField">Text value (updates on change):</label>
+            <input type="text" class="form-control" id="stringValueChangeField" placeholder="Enter text">
+          </div>
+          <div class="form-group">
+            <label for="stringValueKeyStrokeField">Text value (updates on keystroke):</label>
+            <input type="text" class="form-control" id="stringValueKeyStrokeField" placeholder="Enter text">
+          </div>
+          <div class="form-group">
+            <label for="stringValueMultiLineField">Text value (multi-line):</label>
+            <textarea class="form-control" id="stringValueMultiLineField"> </textarea>
+          </div>
+          <div class="form-group">
+            <label for="passwordField">Password:</label>
+            <input type="password" class="form-control" id="passwordField" placeholder="Enter password">
+          </div>
+          <div class="form-group">
+            <label for="checkboxField">Checkbox:</label>
+            <input type="checkbox" id="checkboxField" placeholder="Enter password">
+          </div>
+
+          <div class="form-group">
+            <label for="dropdownField">Drop-down list:</label>
+            <select class="form-control" id="dropdownField"></select>
+          </div>
+          <div class="form-group">
+            <label for="multiple">Drop-down list:</label>
+            <select class="form-control" multiple="multiple" id="multiSelectDropDownField"></select>
+          </div>
+          <div class="form-group">
+            <label for="multiple">Radio buttons:</label>
               <label><input type="radio" value="Alpha" id="radioButtonAlphaField" name="radioButtonField" />Alpha</label>
               <label><input type="radio" value="Beta" id="radioButtonBetaField" name="radioButtonField" />Beta</label>
               <label><input type="radio" value="Gamma" id="radioButtonGammaField" name="radioButtonField" />Gamma</label>
-          </td>
-      </tr>
-      <tr>
-        <td></td>
-        <td><input type="submit" onclick="showObj()"></td>
-      </tr>
-  </table>
+          </div>
+          <button type="submit" class="btn btn-default" onclick="showObj()">Submit</button>
+        </form>
+      </div>
 
-  <div class="readout">
-    <h3>What's in the model?</h3>
-    <table>
-        <tr>
-            <td class="label">Text value:</td>
-            <td id="stringValue"></td>
-        </tr>
-        <tr>
-            <td class="label">Password:</td>
-            <td id="passwordValue"></td>
-        </tr>
-        <tr>
-            <td class="label">Bool value:</td>
-            <td id="booleanValue"></td>
-        </tr>
-        <tr>
-            <td class="label">Selected option:</td>
-            <td id="selectedOptionValue"></td>
-        </tr>
-        <tr>
-            <td class="label">Multi-selected options:</td>
-            <td id="multipleSelectedOptionValues"></td>
-        </tr>
-        <tr>
-            <td class="label">Radio button selection:</td>
-            <td id="radioSelectedOptionValue"></td>
-        </tr>
-    </table>
+      <div class="row">
+        <h3>What's in the model?</h3>
+        <table class="table">
+            <tr>
+                <td>Text value:</td>
+                <td id="stringValue"></td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td id="passwordValue"></td>
+            </tr>
+            <tr>
+                <td>Bool value:</td>
+                <td id="booleanValue"></td>
+            </tr>
+            <tr>
+                <td>Selected option:</td>
+                <td id="selectedOptionValue"></td>
+            </tr>
+            <tr>
+                <td>Multi-selected options:</td>
+                <td id="multipleSelectedOptionValues"></td>
+            </tr>
+            <tr>
+                <td >Radio button selection:</td>
+                <td id="radioSelectedOptionValue"></td>
+            </tr>
+        </table>
+      </div>
+    </div>
+
+      <hr>
+      <footer>
+        <p>&copy; Company 2014</p>
+      </footer>
+    </div>
   </div>
-  
+  <!-- /container -->
 
-  <script type="text/javascript">
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script type="text/javascript">
 
     var viewModel = {
         stringValue : 'Hello',
@@ -180,7 +222,6 @@
 
 
   </script>
-
-</body>
+  </body>
 
 </html>
