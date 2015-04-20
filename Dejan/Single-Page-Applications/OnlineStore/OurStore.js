@@ -53,23 +53,27 @@ function CatalogCtrl(productService){
 OurStoreApp.service('productService', ProductService);
 function ProductService(){
 	var bikes = [{
+		id : 1,
 		name : 'Giant',
-		description : 'a really cool bike',
+		description : "Giant Manufacturing Co. Ltd. is a Taiwanese bicycle manufacturer that is recognized as the world's largest bicycle manufacturer. Giant has manufacturing facilities in Taiwan, the Netherlands, and China",
 		price : 200,
 		qty : 10
 	},{
+		id : 2,
 		name : 'Cervelo',
-		description : 'a really cool car',
+		description : "Cervélo Cycles is a Canadian manufacturer of racing bicycle frames. Cervélo uses CAD, computational fluid dynamics, and wind tunnel testing at a variety of facilities including the San Diego Air ",
 		price : 300,
 		qty : 5
 	},{
+		id : 3,
 		name : 'Trek',
-		description : 'a really cool car',
+		description : "Trek Bicycle Corporation is a major bicycle and cycling product manufacturer and distributor under brand names Trek, Electra Bicycle Company, Gary Fisher, Bontrager, Diamant Bikes, Villiger Bikes and until 2008, LeMond Racing Cycles and Klein",
 		price : 400,
 		qty : 2
 	},{
+		id : 4,
 		name : 'Avanti',
-		description : 'a really cool car',
+		description : "Avanti bikes is an Australasian company originating from New Zealand and now distributes bicycles to many countries within Oceania, Asia and Europe",
 		price : 500,
 		qty : 1
 	}];
