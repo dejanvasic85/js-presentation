@@ -1,5 +1,7 @@
-// Code goes here
+//so we know the document is ready
 $(function() {
+
+  /*EXAMPLE 1*/
   $('#showHideLink').click(function() {
     $('#showHideContentParagraph').toggle();
 
@@ -8,10 +10,24 @@ $(function() {
   })
 
   $('#makeAllRedLink').on('click', function() {
-    $('#redList li').each(function(i) {
+    $('#theList li').each(function(i) {
       $(this).css('color', 'red');
     });
   });
+
+  $('#makeAllBoldLink').on('click', function() {
+    $('#theList li').each(function(i) {
+      $(this).css('font-weight', 'bold');
+    });
+  });
+
+  $('#addClassToListItems').on('click', function() {
+    $('#theList li').each(function(i) {
+      $(this).addClass('text-right');
+    });
+  });
+
+  /*EXAMPLE 2*/
 
   $('#addRowLink').on('click', function() {
     $('#myTable').append('<tr><td>New data</td><td>New data</td></tr>');
@@ -25,6 +41,18 @@ $(function() {
     */
     
   });
+
+  $('#clickImage').on('click', function() {
+    $(this).attr('src', 'DreamweaverJavaScriptIcon.png');
+  });
+
+  $('#hoverImage').hover(
+    function() {
+      $(this).attr('src', 'DreamweaverJavaScriptIcon.png');
+    }, function() {
+      $(this).attr('src', 'javascript.png');
+    }
+  );
   
   $('#refreshDataLink').on('click', function() {
     $.get( "data.html", function( data ) {

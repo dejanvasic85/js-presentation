@@ -1,49 +1,156 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
-  <head>
-    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
-    <script src="script.js"></script>
-  </head>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <link href="css/bootstrap.css" rel="stylesheet" />
+  
+  <title>Using JQuery to manipulate the DOM</title>
+</head>
 
   <body>
-    <h1>Basic Javascript Web Functionality</h1>
-    <h2>Changing styles on elements</h2>
-    <a id="showHideLink" href="#">Click me to hide or show a paragraph of text</a>
-    <p style="display: none;" id="showHideContentParagraph">Some content here that gets shown or hidden</p>
-    
-    <ul id="redList">
-      <li>List item 1</li>
-      <li>List item 2</li>
-      <li>List item 3</li>
-      <li>List item 4</li>
-    </ul>
-    <a href="#" id="makeAllRedLink">Make all list items red!</a>
-    <hr />
-    <h2>Add Elements to DOM</h2>
-    <table id="myTable">
-      <tbody>
-        <tr>
-          <th>Column 1</th>
-          <th>Column 2</th>
-        </tr>
-        <tr>
-          <td>Data 1</td>
-          <td>Data 1</td>
-        </tr>
-        <tr>
-          <td>Data 2</td>
-          <td>Data 2</td>
-        </tr>
-      </tbody>
-    </table>
-    <a href="#" id="addRowLink">Add another row</a>
-    <hr />
-    <h2>Ajax</h2>
-    <a href="#" id="refreshDataLink">Refresh data</a>
-    <div style="margin-top: 10px; border: 1px solid black;" id="dataContainer">
-      Click the about link to load in some data from the server.
+    <div>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">Home</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <div class="navbar-right" style="margin-top:10px;">
+          </div>
+        </div>
+        <!--/.navbar-collapse -->
+      </div>
+    </nav>
+
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Using JQuery to manipulate the DOM</h1>
+        <p>We will explore how JQuery makes it easier to manipulate the DOM.</p>
+      </div>
     </div>
+
+    <div class="container">
+      
+      <div class="row">
+        <h2>Changing styles on elements</h2>
+
+        
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"><strong>Example 1:</strong> Show or hide a single element</h3>
+          </div>
+          <div class="panel-body">
+            <a class="btn btn-primary" id="showHideLink">Click me to hide or show a paragraph of text</a>
+            <p style="display: none;" id="showHideContentParagraph">Some content here that gets shown or hidden</p>
+          </div>
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"><strong>Example 2:</strong> Change styling of multiple elements</h3>
+          </div>
+          <div class="panel-body">
+            <ul id="theList">
+              <li>List item 1</li>
+              <li>List item 2</li>
+              <li>List item 3</li>
+              <li>List item 4</li>
+            </ul>
+            <a class="btn btn-primary" id="makeAllRedLink">Make all list items red</a>
+            <a class="btn btn-primary" id="makeAllBoldLink">Make all list items bold</a>
+            <a class="btn btn-primary" id="addClassToListItems">Add class to all items</a>
+          </div>
+        </div>
+        
+
+      </div>
+      <div class="row">
+
+        <h2>Chaning the DOM</h2>
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"><strong>Example 3:</strong> Add data to a table</h3>
+          </div>
+          <div class="panel-body">
+            <table id="myTable" class="table">
+              <tr>
+                <th>Column 1</th>
+                <th>Column 2</th>
+              </tr>
+              <tr>
+                <td>Data 1</td>
+                <td>Data 1</td>
+              </tr>
+              <tr>
+                <td>Data 2</td>
+                <td>Data 2</td>
+              </tr>
+            </table>
+            <a class="btn btn-primary" id="addRowLink">Add another row</a>
+          </div>
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"><strong>Example 4:</strong> Images</h3>
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-md-6 text-center">
+                <img src="javascript.png" id="clickImage" />
+                <h3>Click above to change the image</h3>
+              </div>
+              <div class="col-md-6 text-center">
+                <img src="javascript.png" id="hoverImage"  />
+                <h3>Hover over above to change the image</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      
+      </div>
+
+      <div class="row">
+        <h2>Ajax</h2>
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"><strong>Example 5:</strong> Get some data from the server</h3>
+          </div>
+          <div class="panel-body">
+            <div class="well well-lg" id="dataContainer">
+              Click the button to load in some data from the server.
+            </div>
+            <a class="btn btn-primary" id="refreshDataLink">Refresh data</a>
+          </div>
+        </div>
+      </div>
+
+      <hr>
+      <footer>
+        <p>&copy; Company 2014</p>
+      </footer>
+    </div>
+  </div>
+  <!-- /container -->
+
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script type="text/javascript" src="script.js"></script>
   </body>
 
 </html>

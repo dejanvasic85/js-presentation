@@ -1,5 +1,6 @@
 // Code goes here
 
+/* EXAMPLE 1 */
 function showHide() {
   var element = document.getElementById('showHideContentParagraph');
 
@@ -11,14 +12,36 @@ function showHide() {
 
 }
 
+/* EXAMPLE 2 */
 function makeAllListItemsRed() {
-  var list = document.getElementById('redList');
+  var list = document.getElementById('theList');
   var listItems = document.getElementsByTagName('li');
 
   for (var i = 0; i < listItems.length; ++i) {
-    listItems[i].style.color = "red";
+    listItems[i].style.color = 'red';
   }
 }
+
+function makeAllListItemsBold() {
+  var list = document.getElementById('theList');
+  var listItems = document.getElementsByTagName('li');
+
+  for (var i = 0; i < listItems.length; ++i) {
+    listItems[i].style.fontWeight = 'bold';
+  }
+}
+
+function addClassToAllListItems() {
+  var list = document.getElementById('theList');
+  var listItems = document.getElementsByTagName('li');
+
+  for (var i = 0; i < listItems.length; ++i) {
+    listItems[i].className = 'text-right'
+  }
+}
+
+
+/* EXAMPLE 3 */
 
 function addRowToTable() {
 
@@ -32,6 +55,15 @@ function addRowToTable() {
   cell1.innerHTML = 'New data';
   cell2.innerHTML = 'New data';
 }
+
+function clickChangeImage(theImage) {
+  theImage.src = 'DreamweaverJavaScriptIcon.png';
+}
+
+function hoverChangeImage(theImage) {
+  theImage.src = 'DreamweaverJavaScriptIcon.png';
+}
+
 
 function refreshData() {
   var xmlhttp;
